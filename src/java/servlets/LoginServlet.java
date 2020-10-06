@@ -23,21 +23,25 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        
+        String action = request.getParameter("action");
           if(session.getAttribute("username") != null)
       {
-        getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-        
-      }
           
-        String action = request.getParameter("action");
         if(action != null && action.equals("reset"))
         {
             session.invalidate();
             session = request.getSession();
             
             request.setAttribute("message", "Successfully Loggedout");
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            return;
         }
+        getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        return;
+        
+      }
+          
+        
         
        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     
