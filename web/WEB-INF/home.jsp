@@ -15,8 +15,9 @@
         <h1>Home Page</h1>
         <h2>Hello ${username}</h2>
         
-         <form action="login" method="get">
-             <input type="submit" value="logout">
+        <form action="login" method="get" name="logout">
+             <a href="#" onclick="document.forms['logout'].submit(); return false;">logout</a>
+            
             <input type="hidden" name="action" value="reset">
          </form>
     </body>
